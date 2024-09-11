@@ -1,0 +1,175 @@
+<html>
+
+<head>
+    <title>ТУСУР РВП 2024/2025</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <h1>Лабораторная работа №1. Основы ситаксиса JavaScript.</h1>
+
+    <h2>Информация об ученике</h2>
+    <p>ФИО: Карманов Арсений Викторович</p>
+    <p>Группа: 571-2</p>
+    <p>Вариант: 2</p>
+
+    <h2>Задания</h2>
+    <button onclick="task1()">Задание 1</button>
+    <button onclick="task2()">Задание 2</button>
+    <button onclick="task3()">Задание 3</button>
+
+    <form id="task1Form" style="display:none;">
+        <label for="surname">Фамилия:</label>
+        <input type="text" id="surname" name="surname" required>
+
+        <label for="gender">Пол:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Мужской</option>
+            <option value="female">Женский</option>
+        </select>
+
+        <label for="age">Возраст:</label>
+        <input type="number" id="age" name="age" required>
+
+        <button type="button" onclick="submitTask1Form()">Подтвердить</button>
+    </form>
+
+    <form id="task2Form" style="display:none;">
+        <label for="x">Число x:</label>
+        <input type="number" id="x" name="x" required>
+
+        <label for="y">Число y:</label>
+        <input type="number" id="y" name="y" required>
+
+        <label for="operation">Операция:</label>
+        <input type="text" id="operation" name="operation" required>
+
+        <button type="button" onclick="submitTask2Form()">Подтвердить</button>
+    </form>
+
+    <form id="task3Form" style="display:none;">
+        <div style="display: inline-block;">
+            <table id="table1" style="display: table;">
+                <script>
+                    let n = 10;
+                    let m = n - 2;
+                    let table = document.getElementById('table1');
+                    table.innerHTML = '';
+
+                    for (let i = 0; i < n; i++) {
+                        const row = document.createElement('tr');
+                        for (let j = 0; j < n; j++) {
+                            const cell = document.createElement('td');
+                            if (m <= j) {
+                                cell.style.backgroundColor = 'red';
+                            } else {
+                                cell.style.backgroundColor = 'blue';
+                            }
+                            cell.style.width = '20px';
+                            cell.style.height = '20px';
+                            row.appendChild(cell);
+                        }
+                        m--;
+                        table.appendChild(row);
+                    }
+                </script>
+            </table>
+        </div>
+        <div style="display: inline-block;">
+            <table id="table2" style="display: table;">
+                <script>
+                    let table2 = document.getElementById('table2');
+                    table2.innerHTML = '';
+                    m = 0;
+                    for (let i = 0; i < n; i++) {
+                        const row = document.createElement('tr');
+                        for (let j = 0; j < n; j++) {
+                            const cell = document.createElement('td');
+                            
+                            if (m % 4 === 0) {
+                                cell.style.backgroundColor = 'red';
+                            } else {
+                                cell.style.backgroundColor = 'blue';
+                            }
+
+                            cell.style.width = '20px';
+                            cell.style.height = '20px';
+                            row.appendChild(cell);
+                            m++;
+                        }
+                        m--;
+                        table2.appendChild(row);
+                    }
+                </script>
+            </table>
+    </form>
+
+    <script>
+        function task1() {
+            document.getElementById('task1Form').style.display = 'block';
+            document.getElementById('task2Form').style.display = 'none';
+            document.getElementById('task3Form').style.display = 'none';
+        }
+
+        function task2() {
+            document.getElementById('task1Form').style.display = 'none';
+            document.getElementById('task2Form').style.display = 'block';
+            document.getElementById('task3Form').style.display = 'none';
+        }
+
+        function task3() {
+            document.getElementById('task3Form').style.display = 'block';
+            document.getElementById('task1Form').style.display = 'none';
+            document.getElementById('task2Form').style.display = 'none';
+        }
+
+        function submitTask1Form() {
+            const surname = document.getElementById('surname').value;
+            const gender = document.getElementById('gender').value;
+            const age = document.getElementById('age').value;
+
+            const confirmation = confirm(`Вы ввели следующие данные:\nФамилия: ${surname}\nПол: ${gender}\nВозраст: ${age}\nЭто верно?`);
+
+            if (confirmation) {
+                alert(`Привет, ${surname}!`);
+            } else {
+                alert('Ошибка: данные введены неверно.');
+            }
+        }
+
+        function submitTask2Form() {
+            const x = parseFloat(document.getElementById('x').value);
+            const y = parseFloat(document.getElementById('y').value);
+            const operation = document.getElementById('operation').value;
+
+            let result;
+            switch (operation) {
+                case '+':
+                    result = x + y;
+                    break;
+                case '-':
+                    result = x - y;
+                    break;
+                case '*':
+                    result = x * y;
+                    break;
+                case '/':
+                    if (y === 0) {
+                        alert('Ошибка: деление на 0.');
+                        return;
+                    }
+                    result = x / y;
+                    break;
+                default:
+                    alert('Ошибка: неверный знак операции.');
+                    return;
+            }
+
+            alert(`Результат: ${result}`);
+        }
+
+
+    </script>
+</body>
+
+</html>
