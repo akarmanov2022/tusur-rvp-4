@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>ТУСУР РВП 2024/2025</title>
+    <link rel="stylesheet" href="../css/styles.css" type="text/css">
+    <body>
+        <h1>Лабораторная работа №2. Встроенные объекты Javascript.</h1>
+    
+        <h2>Информация об ученике</h2>
+        <p>ФИО: Карманов Арсений Викторович</p>
+        <p>Группа: 571-2</p>
+        <p>Вариант: 2</p>
+    
+        <h2>Задания</h2>
+        <button onclick="task1()">Задание 1</button>
+        <button onclick="task2()">Задание 2</button>
+        <button onclick="task3()">Задание 3</button>
+        <button onclick="task4()">Задание 4</button>
+    
+        <form id="task1Form" style="display:none;">
+            <label for="birthday">Введите дату вашего рождения:</label>
+            <input type="date" id="birthday" name="birthday">
+            <button onclick="showDate()">Показать дату</button>
+
+            <p id="result"></p>
+
+            <script>
+                function showDate() {
+                    const birthday = document.getElementById('birthday').value;
+                    const date = new Date(birthday);
+                    const daysOfWeek = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+                    const months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+
+                    const dayOfWeek = daysOfWeek[date.getDay()];
+                    const day = date.getDate();
+                    const month = months[date.getMonth()];
+                    const year = date.getFullYear();
+
+                    const result = `День недели: ${dayOfWeek}<br>Дата: ${day} ${month} ${year}`;
+                    document.getElementById('result').innerHTML = result;
+                }
+            </script>
+        </form>
+    
+        <form id="task2Form" style="display:none;">
+            <label for="vacationDate">Введите дату начала каникул:</label>
+            <input type="date" id="vacationDate" name="vacationDate">
+            <button onclick="calculateDays()">Рассчитать дни</button>
+
+            <p id="daysLeft"></p>
+
+            <script>
+                function calculateDays() {
+                    const vacationDate = document.getElementById('vacationDate').value;
+                    const today = new Date();
+                    const vacation = new Date(vacationDate);
+                    const millisecondsPerDay = 24 * 60 * 60 * 1000;
+
+                    const daysLeft = Math.round((vacation - today) / millisecondsPerDay);
+                    document.getElementById('daysLeft').innerHTML = `Дней до каникул: ${daysLeft}`;
+                }
+            </script>
+        </form>
+    
+        <form id="task3Form" style="display:none;">
+            <label for="length">Введите длину прямоугольника:</label>
+            <input type="number" id="length" name="length">
+
+            <label for="width">Введите ширину прямоугольника:</label>
+            <input type="number" id="width" name="width">
+
+            <button onclick="calculateArea()">Рассчитать площадь</button>
+
+            <p id="area"></p>
+
+            <script>
+                function calculateArea() {
+                    const length = document.getElementById('length').value;
+                    const width = document.getElementById('width').value;
+
+                    const area = length * width;
+                    document.getElementById('area').innerHTML = `Площадь прямоугольника: ${area}`;
+                }
+            </script>
+        </form>
+
+        <form id="task4Form" style="display:none;">
+            <label for="fullName">ФИО:</label>
+            <input type="text" id="fullName" name="fullName">
+
+            <label for="gender">Пол:</label>
+            <input type="text" id="gender" name="gender">
+
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone">
+
+            <label for="email">Почта:</label>
+            <input type="email" id="email" name="email">
+
+            <label for="bloodGroup">Группа крови:</label>
+            <input type="text" id="bloodGroup" name="bloodGroup">
+
+            <label for="specialty">Специальность:</label>
+            <input type="text" id="specialty" name="specialty">
+
+            <button onclick="generateBiography()">Сформировать биографию</button>
+
+            <script>
+                function generateBiography() {
+                    const fullName = document.getElementById('fullName').value;
+                    const gender = document.getElementById('gender').value;
+                    const phone = document.getElementById('phone').value;
+                    const email = document.getElementById('email').value;
+                    const bloodGroup = document.getElementById('bloodGroup').value;
+                    const specialty = document.getElementById('specialty').value;
+
+                    const biography = `ФИО: ${fullName}<br>
+                                       Пол: ${gender}<br>
+                                       Телефон: ${phone}<br>
+                                       Почта: ${email}<br>
+                                       Группа крови: ${bloodGroup}<br>
+                                       Специальность: ${specialty}`;
+                    const newWindow = window.open();
+                    newWindow.document.write(biography);
+                }
+            </script>
+        </form>
+
+        <script>
+            function task1() {
+                document.getElementById('task1Form').style.display = 'block';
+                document.getElementById('task2Form').style.display = 'none';
+                document.getElementById('task3Form').style.display = 'none';
+                document.getElementById('task4Form').style.display = 'none';
+            }
+            function task2() {
+                document.getElementById('task1Form').style.display = 'none';
+                document.getElementById('task2Form').style.display = 'block';
+                document.getElementById('task3Form').style.display = 'none';
+                document.getElementById('task4Form').style.display = 'none';
+            }
+            function task3() {
+                document.getElementById('task1Form').style.display = 'none';
+                document.getElementById('task2Form').style.display = 'none';
+                document.getElementById('task3Form').style.display = 'block';
+                document.getElementById('task4Form').style.display = 'none';
+            }
+            function task4() {
+                document.getElementById('task1Form').style.display = 'none';
+                document.getElementById('task2Form').style.display = 'none';
+                document.getElementById('task3Form').style.display = 'none';
+                document.getElementById('task4Form').style.display = 'block';
+            }
+        </script>
+    </body>
+</html>
