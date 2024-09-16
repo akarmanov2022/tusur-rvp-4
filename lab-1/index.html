@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 
 <head>
     <title>ТУСУР РВП 2024/2025</title>
@@ -50,59 +51,56 @@
     <form id="task3Form" style="display:none;">
         <div style="display: inline-block;">
             <table id="table1" style="display: table;">
-                <script>
-                    let n = 10;
-                    let m = n - 2;
-                    let table = document.getElementById('table1');
-                    table.innerHTML = '';
-
-                    for (let i = 0; i < n; i++) {
-                        const row = document.createElement('tr');
-                        for (let j = 0; j < n; j++) {
-                            const cell = document.createElement('td');
-                            if (m <= j) {
-                                cell.style.backgroundColor = 'red';
-                            } else {
-                                cell.style.backgroundColor = 'blue';
-                            }
-                            cell.style.width = '20px';
-                            cell.style.height = '20px';
-                            row.appendChild(cell);
-                        }
-                        m--;
-                        table.appendChild(row);
-                    }
-                </script>
             </table>
         </div>
         <div style="display: inline-block;">
             <table id="table2" style="display: table;">
-                <script>
-                    let table2 = document.getElementById('table2');
-                    table2.innerHTML = '';
-                    m = 0;
-                    for (let i = 0; i < n; i++) {
-                        const row = document.createElement('tr');
-                        for (let j = 0; j < n; j++) {
-                            const cell = document.createElement('td');
-                            
-                            if (m % 4 === 0) {
-                                cell.style.backgroundColor = 'red';
-                            } else {
-                                cell.style.backgroundColor = 'blue';
-                            }
-
-                            cell.style.width = '20px';
-                            cell.style.height = '20px';
-                            row.appendChild(cell);
-                            m++;
-                        }
-                        m--;
-                        table2.appendChild(row);
-                    }
-                </script>
             </table>
+        </div>
     </form>
+
+    <script>
+        let n = 10;
+        let m = n - 2;
+        let table = document.getElementById('table1');
+        table.innerHTML = '';
+        for (let i = 0; i < n; i++) {
+            const row = document.createElement('tr');
+            for (let j = 0; j < n; j++) {
+                const cell = document.createElement('td');
+                if (m <= j) {
+                    cell.style.backgroundColor = 'red';
+                } else {
+                    cell.style.backgroundColor = 'blue';
+                }
+                cell.style.width = '20px';
+                cell.style.height = '20px';
+                row.appendChild(cell);
+            }
+            m--;
+            table.appendChild(row);
+        }
+        let table2 = document.getElementById('table2');
+        table2.innerHTML = '';
+        m = 0;
+        for (let i = 0; i < n; i++) {
+            const row = document.createElement('tr');
+            for (let j = 0; j < n; j++) {
+                const cell = document.createElement('td');
+                if (m % 4 === 0) {
+                    cell.style.backgroundColor = 'red';
+                } else {
+                    cell.style.backgroundColor = 'blue';
+                }
+                cell.style.width = '20px';
+                cell.style.height = '20px';
+                row.appendChild(cell);
+                m++;
+            }
+            m--;
+            table2.appendChild(row);
+        }
+    </script>
 
     <script>
         function task1() {
@@ -167,8 +165,6 @@
 
             alert(`Результат: ${result}`);
         }
-
-
     </script>
 </body>
 
