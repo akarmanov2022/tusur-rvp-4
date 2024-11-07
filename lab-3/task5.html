@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #container {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            background-image: url('images/mammoth.png');
+            background-size: cover;
+            background-position: center;
+        }
+        #movingImage {
+            position: absolute;
+            width: 50px; /* Adjust the width as needed */
+            height: 50px; /* Adjust the height as needed */
+            background-image: url('images/hippo.png');
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="movingImage"></div>
+    </div>
+
+    <script>
+        const movingImage = document.getElementById('movingImage');
+        const container = document.getElementById('container');
+        const step = 50; // Adjust the step size as needed
+        let x = 0;
+        let y = 0;
+        let direction = 'down';
+
+        function moveImage() {
+            const containerHeight = container.clientHeight;
+            const containerWidth = container.clientWidth;
+            const imageHeight = movingImage.clientHeight;
+            const imageWidth = movingImage.clientWidth;
+
+            if (direction === 'down') {
+                y += step;
+                if (y + imageHeight > containerHeight) {
+                    y = containerHeight - imageHeight;
+                    direction = 'right';
+                }
+            } else if (direction === 'right') {
+                x += step;
+                if (x + imageWidth > containerWidth) {
+                    x = containerWidth - imageWidth;
+                    direction = 'up';
+                }
+            } else if (direction === 'up') {
+                y -= step;
+                if (y < 0) {
+                    y = 0;
+                    direction = 'rightDown';
+                }
+            } else if (direction === 'rightDown') {
+                x += step;
+                if (x + imageWidth > containerWidth) {
+                    x = containerWidth - imageWidth;
+                    direction = 'down';
+                } else {
+                    direction = 'down';
+                }
+            }
+
+            movingImage.style.transform = `translate(${x}px, ${y}px)`;
+            requestAnimationFrame(moveImage);
+        }
+
+        moveImage();
+    </script>
+</body>
+</html>
