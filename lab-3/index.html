@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ТУСУР РВП 2024/2025</title>
+    <link rel="stylesheet" href="../css/styles.css" type="text/css">
+</head>
+
+<body>
+    <h1>Лабораторная работа №3. Изменение содержимого веб-страницы</h1>
+
+    <h2>Информация об ученике</h2>
+    <p>ФИО: Карманов Арсений Викторович</p>
+    <p>Группа: 571-2</p>
+    <p>Вариант: 2</p>
+
+    <h2>Задания</h2>
+    <button onclick="task1()">Задание 1</button>
+    <button onclick="task2()">Задание 2</button>
+    <button onclick="task3()">Задание 3</button>
+    <button onclick="task4()">Задание 4</button>
+    <button onclick="task5()">Задание 5</button>
+
+    <script>
+        function task1() {
+            document.getElementById('task1Form').style.display = 'block';
+            document.getElementById('task2Form').style.display = 'none';
+            document.getElementById('task3Form').style.display = 'none';
+            document.getElementById('task4Form').style.display = 'none';
+            document.getElementById('task5Form').style.display = 'none';
+        }
+        function task2() {
+            document.getElementById('task1Form').style.display = 'none';
+            document.getElementById('task2Form').style.display = 'block';
+            document.getElementById('task3Form').style.display = 'none';
+            document.getElementById('task4Form').style.display = 'none';
+            document.getElementById('task5Form').style.display = 'none';
+        }
+        function task3() {
+            document.getElementById('task1Form').style.display = 'none';
+            document.getElementById('task2Form').style.display = 'none';
+            document.getElementById('task3Form').style.display = 'block';
+            document.getElementById('task4Form').style.display = 'none';
+            document.getElementById('task5Form').style.display = 'none';
+        }
+        function task4() {
+            document.getElementById('task1Form').style.display = 'none';
+            document.getElementById('task2Form').style.display = 'none';
+            document.getElementById('task3Form').style.display = 'none';
+            document.getElementById('task4Form').style.display = 'block';
+            document.getElementById('task5Form').style.display = 'none';
+        }
+        function task5() {
+            document.getElementById('task1Form').style.display = 'none';
+            document.getElementById('task2Form').style.display = 'none';
+            document.getElementById('task3Form').style.display = 'none';
+            document.getElementById('task4Form').style.display = 'none';
+            document.getElementById('task5Form').style.display = 'block';
+        }
+    </script>
+
+    <form id="task1Form" style="display:none;">
+        <h2>Выбор художника</h2>
+        <form id="artistForm">
+            <label for="artist">Выберите художника:</label>
+            <select id="artist" name="artist">
+                <option value="vanGogh">Винсент Ван Гог</option>
+                <option value="picasso">Пабло Пикассо</option>
+                <option value="daVinci">Леонардо да Винчи</option>
+            </select>
+            <button type="button" onclick="showPortraits()">Показать</button>
+        </form>
+
+        <script>
+            function showPortraits() {
+                const artist = document.getElementById('artist').value;
+                let portraits = [];
+
+                if (artist === 'vanGogh') {
+                    portraits = [
+                        { src: './images/vanGogh1.jpg', caption: 'Ван Гог - Портрет 1' },
+                        { src: './images/vanGogh2.jpg', caption: 'Ван Гог - Портрет 2' }
+                    ];
+                } else if (artist === 'picasso') {
+                    portraits = [
+                        { src: './images/picasso1.jpg', caption: 'Пикассо - Портрет 1' },
+                        { src: './images/picasso2.jpg', caption: 'Пикассо - Портрет 2' }
+                    ];
+                } else if (artist === 'daVinci') {
+                    portraits = [
+                        { src: './images/daVinci1.png', caption: 'Да Винчи - Портрет 1' },
+                        { src: './images/daVinci2.jpg', caption: 'Да Винчи - Портрет 2' }
+                    ];
+                }
+
+                const newWindow = window.open('', '_blank', 'width=800,height=600');
+                newWindow.document.write('<html><head><title>Портреты</title></head><body>');
+                newWindow.document.write('<h1>Портреты выбранного художника</h1>');
+
+                portraits.forEach(portrait => {
+                    newWindow.document.write(`<div><img src="${portrait.src}" alt="${portrait.caption}" style="width:200px;height:auto;"><p>${portrait.caption}</p></div>`);
+                });
+
+                newWindow.document.write('</body></html>');
+                newWindow.document.close();
+            }
+        </script>
+    </form>
+    <form id="task2Form" style="display:none;">
+        <h2>Задание 2</h2>
+        <table border="1">
+            <tr>
+                <th>Животное</th>
+                <th>Рисунок</th>
+            </tr>
+            <tr>
+                <td onmouseover="showImage('hippo', 'hippoImage')" onmouseout="hideImage('hippoImage')">БЕГЕМОТ</td>
+                <td><img id="hippoImage" src="" alt="Рисунок животного" style="width:200px;height:auto;"></td>
+            </tr>
+            <tr>
+                <td onmouseover="showImage('shark', 'sharkImage')" onmouseout="hideImage('sharkImage')">АКУЛА</td>
+                <td><img id="sharkImage" src="" alt="Рисунок животного" style="width:200px;height:auto;"></td>
+            </tr>
+            <tr>
+                <td onmouseover="showImage('mammoth', 'mammothImage')" onmouseout="hideImage('mammothImage')">МАМОНТ
+                </td>
+                <td><img id="mammothImage" src="" alt="Рисунок животного" style="width:200px;height:auto;"></td>
+            </tr>
+        </table>
+
+        <script>
+            function showImage(animal, imageId) {
+                const image = document.getElementById(imageId);
+                if (animal === 'hippo') {
+                    image.src = './images/hippo.jpg';
+                } else if (animal === 'shark') {
+                    image.src = './images/shark.jpg';
+                } else if (animal === 'mammoth') {
+                    image.src = './images/mammoth.jpg';
+                }
+            }
+
+            function hideImage(imageId) {
+                const image = document.getElementById(imageId);
+                image.src = '';
+            }
+        </script>
+
+        <style>
+            body {
+                background-color: #f0f0f0;
+                color: #333;
+            }
+        </style>
+    </form>
+
+    <form id="task3Form" style="display:none;">
+        <h2>Задание 3</h2>
+        <!-- Add your task 3 form elements here -->
+        <div id="colorBox" style="width: 250px; height: 250px; background-color: red; border: 10px inset darkblue;">
+        </div>
+        <button id="colorToggleButton" onclick="toggleColor(event)">Изменить цвет</button>
+
+        <script>
+            function toggleColor(event) {
+                event.preventDefault();
+                const colorBox = document.getElementById('colorBox');
+                const button = document.getElementById('colorToggleButton');
+                if (colorBox.style.backgroundColor === 'red') {
+                    colorBox.style.backgroundColor = 'lightblue';
+                    button.textContent = 'Изменить цвет на красный';
+                } else {
+                    colorBox.style.backgroundColor = 'red';
+                    button.textContent = 'Изменить цвет на голубой';
+                }
+            }
+        </script>
+    </form>
+
+    <form id="task4Form" style="display:none;">
+        <h2>Задание 4</h2>
+        <table>
+            <tr>
+                <td>
+                    <img id="image1" src="./images/image1.jpg" alt="Картинка 1"
+                        style="width:200px;height:200px;border:50px outset #ffA089;padding:5px;">
+                    <input type="button" id="button1" value="спрячь меня" onclick="toggleImage(1, event)">
+                </td>
+                <td>
+                    <img id="image2" src="./images/image2.jpg" alt="Картинка 2"
+                        style="width:200px;height:200px;border:50px outset #89ffA0;padding:5px;">
+                    <input type="button" id="button2" value="спрячь меня" onclick="toggleImage(2, event)">
+                </td>
+            </tr>
+        </table>
+
+        <script>
+            function toggleImage(imageNumber, event) {
+                event.preventDefault();
+                const image = document.getElementById(`image${imageNumber}`);
+                const button = document.getElementById(`button${imageNumber}`);
+                if (image.style.display === 'none') {
+                    image.style.display = 'block';
+                    button.value = 'спрячь меня';
+                } else {
+                    image.style.display = 'none';
+                    button.value = 'покажи меня';
+                }
+            }
+        </script>
+    </form>
+
+    <form id="task5Form" style="display:none;">
+        <h2>Задание 5</h2>
+        <p>
+            Создайте документ, в котором рисунок занимает 50% окна и является
+            нижним слоем. На верхнем слое второй рисунок, который двигается по вертикали
+            к нижней границе первого рисунка, затем на столбец (ширину рисунка) вправо и
+            вверх, к верхней границе, на столбец вправо и к нижней границе, и т.д. до правой
+            границы нижнего рисунка.
+        </p>
+        <div id="container" style="position: relative; width: 50%; height: 50vh; overflow: hidden;">
+            <img id="backgroundImage" src="./images/background.jpg" alt="Фон"
+                style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1;">
+            <img id="movingImage" src="./images/moving.jpg" alt="Двигающийся рисунок"
+                style="width: 10%; position: absolute; top: 0; left: 0; z-index: 2;">
+        </div>
+
+        <script>
+            const movingImage = document.getElementById('movingImage');
+            const container = document.getElementById('container');
+            const step = movingImage.offsetWidth;
+            let direction = 'down';
+            let posX = 0;
+            let posY = 0;
+
+            function moveImage() {
+                if (direction === 'down') {
+                    posY += step;
+                    if (posY + movingImage.offsetHeight >= container.offsetHeight) {
+                        direction = 'right';
+                        posY = container.offsetHeight - movingImage.offsetHeight;
+                        posX += step;
+                    }
+                } else if (direction === 'up') {
+                    posY -= step;
+                    if (posY <= 0) {
+                        direction = 'right';
+                        posY = 0;
+                        posX += step;
+                    }
+                } else if (direction === 'right') {
+                    if (posY === 0) {
+                        direction = 'down';
+                    } else {
+                        direction = 'up';
+                    }
+                }
+
+                if (posX + movingImage.offsetWidth >= container.offsetWidth) {
+                    posX = container.offsetWidth - movingImage.offsetWidth;
+                    direction = 'stop';
+                }
+
+                movingImage.style.top = posY + 'px';
+                movingImage.style.left = posX + 'px';
+
+                if (direction !== 'stop') {
+                    requestAnimationFrame(moveImage);
+                }
+            }
+
+            moveImage();
+        </script>
+    </form>
+</body>
+
+</html>
