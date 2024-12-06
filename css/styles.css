@@ -8,27 +8,29 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: #fafafa;
 }
 
-div .student-info {
-    background-color: #f0f0f0;
-    border: 2px solid #ccc;
-    padding: 15px;
-    border-radius: 10px;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.student-info, .lab {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
     margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-div .lab {
-    background-color: #f0f0f0;
-    border: 2px solid #ccc;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 20px;
-}
-
-div .title {
+.title {
     text-align: center;
     padding: 15px;
+    font-weight: bold;
+    color: #333;
 }
 
 h1, h2 {
@@ -37,7 +39,8 @@ h1, h2 {
 
 p {
     font-size: 16px;
-    color: #555;
+    color: #666;
+    line-height: 1.6;
 }
 
 button {
@@ -48,6 +51,7 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -64,10 +68,12 @@ label {
 }
 
 input, select {
-    padding: 8px;
+    padding: 10px;
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 /* Added specificity to table class rules */
@@ -77,4 +83,21 @@ input, select {
 
 .task3-2 table td {
     background-color: #ff3333;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .student-info, .lab {
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    button {
+        padding: 8px 16px;
+        margin: 4px;
+    }
 }
