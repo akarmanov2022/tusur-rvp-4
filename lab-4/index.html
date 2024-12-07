@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ТУСУР РВП 2024/2025</title>
+    <link rel="stylesheet" href="../css/styles.css" type="text/css">
+</head>
+
+<body>
+    <h1>Лабораторная работа №4. Классы</h1>
+
+    <h2>Информация об ученике</h2>
+    <p>ФИО: Карманов Арсений Викторович</p>
+    <p>Группа: 571-2</p>
+    <p>Вариант: 2</p>
+
+    <h2>Задание</h2>
+    <p>Написать веб-страницу для динамического заполнения таблицы
+        информацией об учениках.</p>
+
+    <h2>Добавить ученика</h2>
+    <form id="studentForm">
+        <label for="surname">Фамилия:</label>
+        <input type="text" id="surname" name="surname" required><br><br>
+        
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="patronymic">Отчество:</label>
+        <input type="text" id="patronymic" name="patronymic" required><br><br>
+        
+        <label for="birthdate">Дата рождения:</label>
+        <input type="date" id="birthdate" name="birthdate" required><br><br>
+        
+        <label for="phone">Номер телефона:</label>
+        <input type="tel" id="phone" name="phone" required><br><br>
+        
+        <label for="email">Адрес почты:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <button type="button" onclick="addStudent()">Добавить</button>
+    </form>
+
+    <h2>Список группы</h2>
+    <table id="studentsTable" border="1">
+        <thead>
+            <tr>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Дата рождения</th>
+                <th>Номер телефона</th>
+                <th>Адрес почты</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        class Person {
+            constructor(surname, name, patronymic, birthdate, phone, email) {
+                this.surname = surname;
+                this.name = name;
+                this.patronymic = patronymic;
+                this.birthdate = birthdate;
+                this.phone = phone;
+                this.email = email;
+            }
+        }
+
+        function addStudent() {
+            const surname = document.getElementById('surname').value;
+            const name = document.getElementById('name').value;
+            const patronymic = document.getElementById('patronymic').value;
+            const birthdate = document.getElementById('birthdate').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+
+            const student = new Person(surname, name, patronymic, birthdate, phone, email);
+
+            const table = document.getElementById('studentsTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+
+            newRow.insertCell(0).innerText = student.surname;
+            newRow.insertCell(1).innerText = student.name;
+            newRow.insertCell(2).innerText = student.patronymic;
+            newRow.insertCell(3).innerText = student.birthdate;
+            newRow.insertCell(4).innerText = student.phone;
+            newRow.insertCell(5).innerText = student.email;
+
+            document.getElementById('studentForm').reset();
+        }
+    </script>
+    
+</body>
+
+</html>
